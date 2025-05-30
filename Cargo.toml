@@ -7,4 +7,6 @@ edition = "2021"
 pcap = { version = "2", features = ["capture-stream"] }
 clap = { version = "4", features = ["derive"] }
 hex = "0.4"
-etherparse = "0.13" 
+etherparse = "0.13"
+tabled = "0.14"
+chrono = "0.4" 
