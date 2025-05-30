@@ -3,8 +3,8 @@ use pcap::{Device, Capture};
 use etherparse::{SlicedPacket, InternetSlice, TransportSlice};
 
 #[derive(Parser)]
-#[command(name = "netmon")]
-#[command(about = "Simple real-time network traffic monitor (Wireshark/npCap alternative)", long_about = None)]
+#[command(name = "rudeus")]
+#[command(about = "A simple, modern, and fast CLI tool to monitor network traffic in real-time", long_about = None)]
 struct Cli {
     #[command(subcommand)]
     command: Commands,
@@ -88,28 +88,28 @@ fn main() {
                                 println!("TCP: {} -> {}", tcp.source_port(), tcp.destination_port());
                                 println!("Flags: SYN={} ACK={} FIN={} RST={}", tcp.syn(), tcp.ack(), tcp.fin(), tcp.rst());
                                 println!("Seq: {}, Window: {}", tcp.sequence_number(), tcp.window_size());
-                                // HTTP parsing jika port 80/8080/8000
-                                let http_ports = [80, 8080, 8000];
-                                if http_ports.contains(&tcp.destination_port()) || http_ports.contains(&tcp.source_port()) {
-                                    if let Ok(http_str) = std::str::from_utf8(&sliced.payload) {
-                                        if let Some(line) = http_str.lines().next() {
-                                            // Cek apakah line pertama adalah HTTP request
-                                            let methods = ["GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS", "PATCH", "CONNECT", "TRACE"];
-                                            if methods.iter().any(|m| line.starts_with(m)) {
-                                                let mut parts = line.split_whitespace();
-                                                let method = parts.next().unwrap_or("");
-                                                let url = parts.next().unwrap_or("");
-                                                println!("HTTP Request: {} {}", method, url);
-                                                // Cari Host header
-                                                for l in http_str.lines() {
-                                                    if l.to_ascii_lowercase().starts_with("host:") {
-                                                        println!("Host: {}", l[5..].trim());
-                                                        break;
-                                                    }
+                                // Cek HTTP/HTTPS request di semua port
+                                if let Ok(http_str) = std::str::from_utf8(&sliced.payload) {
+                                    if let Some(line) = http_str.lines().next() {
+                                        // Deteksi HTTP request
+                                        let methods = ["GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS", "PATCH", "CONNECT", "TRACE"];
+                                        if methods.iter().any(|m| line.starts_with(m)) {
+                                            let mut parts = line.split_whitespace();
+                                            let method = parts.next().unwrap_or("");
+                                            let url = parts.next().unwrap_or("");
+                                            println!("HTTP Request: {} {}", method, url);
+                                            // Cari Host header
+                                            for l in http_str.lines() {
+                                                if l.to_ascii_lowercase().starts_with("host:") {
+                                                    println!("Host: {}", l[5..].trim());
+                                                    break;
                                                 }
                                             }
                                         }
                                     }
+                                } else if !sliced.payload.is_empty() && sliced.payload[0] == 0x16 && sliced.payload.len() > 5 && sliced.payload[1] == 0x03 {
+                                    // TLS handshake (indikasi HTTPS)
+                                    println!("Possible TLS/HTTPS traffic detected (TLS handshake)");
                                 }
                             }
                             Some(TransportSlice::Udp(udp)) => {
