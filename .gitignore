@@ -1,0 +1,29 @@
+# Rust standard ignores
+/target/
+**/*.rs.bk
+**/*.swp
+**/*.swo
+Cargo.lock
+# VSCode
+.vscode/
+# OS generated
+.DS_Store
+Thumbs.db
+# Byproducts
+*.log
+*.tmp
+*.bak
+*.old
+# IDEs
+.idea/
+*.iml
+# Windows
+*.exe
+*.dll
+*.pdb
+# Mac
+*.dSYM/
+# Coverage
+/coverage/
+# Other
+rudeus

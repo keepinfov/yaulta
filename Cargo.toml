@@ -1,0 +1,10 @@
+[package]
+name = "rudeus"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+pcap = { version = "2", features = ["capture-stream"] }
+clap = { version = "4", features = ["derive"] }
+hex = "0.4"
+etherparse = "0.13" 
