@@ -2,6 +2,18 @@
 
 Rudeus is a modern, fast, and cross-platform CLI tool for real-time network traffic monitoring—think Wireshark, but in your terminal. Built with Rust, it works seamlessly on both Windows and Linux.
 
+## 📚 Library Requirements
+
+- **Windows:** Download and install [Npcap SDK](https://npcap.com/#download)
+- **Debian/Ubuntu:**
+  ```sh
+  sudo apt install libpcap-dev
+  ```
+- **Fedora:**
+  ```sh
+  sudo dnf install libpcap-devel
+  ```
+
 ## ✨ Features
 - List all available network interfaces
 - Real-time packet capture from any interface
