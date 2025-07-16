@@ -1,6 +1,6 @@
 # Yaulta
 
-Rudeus is a modern, fast, and cross-platform CLI tool for real-time network traffic monitoring—think Wireshark, but in your terminal. Built with Rust, it works seamlessly on both Windows and Linux.
+Yaulta is a modern, fast, and cross-platform CLI tool for real-time network traffic monitoring—think Wireshark, but in your terminal. Built with Rust, it works seamlessly on both Windows and Linux.
 
 ## 📚 Library Requirements
 
