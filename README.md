@@ -1,4 +1,4 @@
-# Rudeus
+# Yaulta
 
 Rudeus is a modern, fast, and cross-platform CLI tool for real-time network traffic monitoring—think Wireshark, but in your terminal. Built with Rust, it works seamlessly on both Windows and Linux.
 
@@ -31,7 +31,7 @@ Rudeus is a modern, fast, and cross-platform CLI tool for real-time network traf
 2. Clone this repository:
    ```sh
    git clone <repo-url>
-   cd rudeus
+   cd yaulta
    ```
 3. Build the application:
    ```sh
