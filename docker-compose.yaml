@@ -1,0 +1,11 @@
+services:
+  yaulta:
+    build: .
+    network_mode: host
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    environment:
+      CAPTURED_INTERFACE: "${YAULTA_CAPTURED_INTERFACE}"
+    volumes:
+      - ./pcap:/pcap
