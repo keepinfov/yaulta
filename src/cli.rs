@@ -17,5 +17,11 @@ pub enum Commands {
         /// Name of the interface to capture from
         #[arg(short, long)]
         interface: String,
+        /// Save captured packets to a pcap file
+        #[arg(short, long)]
+        save: bool,
+        /// Output directory for saved pcap files (default: current directory)
+        #[arg(short, long, default_value = ".")]
+        output_dir: String,
     },
 }

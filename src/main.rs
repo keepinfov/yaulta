@@ -15,8 +15,15 @@ fn main() {
         Commands::List => {
             DeviceManager::list_devices();
         }
-        Commands::Capture { interface } => {
+        Commands::Capture {
+            interface,
+            save,
+            output_dir,
+        } => {
             let mut capture = PacketCapture::new(interface);
+            if *save {
+                capture.set_save_options(output_dir);
+            }
             capture.start_capture();
         }
     }

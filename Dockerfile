@@ -8,6 +8,6 @@ RUN cargo build --release
 
 ENV PATH="/usr/src/yaulta/target/release:${PATH}"
 
-CMD yaulta capture -i "$CAPTURED_INTERFACE"
+CMD yaulta capture -i "$CAPTURED_INTERFACE" -s -o /pcap
 
 
