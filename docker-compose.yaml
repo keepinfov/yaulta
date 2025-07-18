@@ -7,5 +7,8 @@ services:
       - NET_RAW
     environment:
       CAPTURED_INTERFACE: "${YAULTA_CAPTURED_INTERFACE}"
+      NATS_MASTER_ADDR: "${YAUlTA_NATS_MASTER_ADDR}"
+      NATS_NODE_ID: "${YAULTA_NATS_NODE_ID}"
+      NATS_SUBJECT: "${YAULTA_NATS_SUBJECT}"
     volumes:
       - ./pcap:/pcap
