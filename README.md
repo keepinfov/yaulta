@@ -52,6 +52,10 @@ tcp | 192.168.1.3 | 34.101.169.118  | 2025/05/31 02:21:54 +07:00 | 8441     | 40
 udp | 192.168.1.3 | 34.101.169.119  | 2025/05/31 02:21:55 +07:00 | 53       | 120   | udp         | 80
 ```
 
+## Advanced Usage
+
+See the ADVANCED_USAGE.md file for details
+
 ## 📝 License
 
 See the LICENSE file for details.
